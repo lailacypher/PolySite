@@ -364,29 +364,108 @@
     let perguntas = [];
 
     // Perguntas organizadas por fase
-    const todasPerguntas = {
-      1: [
-        { pergunta: "Quantos lados tem um triângulo?", opcoes: ["2", "3", "4", "5"], correta: "3" },
-        { pergunta: "Qual o nome do polígono de quatro lados?", opcoes: ["Quadrado", "Pentágono", "Hexágono", "Triângulo"], correta: "Quadrado" },
-        { pergunta: "Quantos lados tem um pentágono?", opcoes: ["5", "6", "7", "8"], correta: "5" },
-        { pergunta: "Um hexágono tem quantos lados?", opcoes: ["6", "5", "4", "7"], correta: "6" },
-        { pergunta: "Qual desses é um polígono de 8 lados?", opcoes: ["Octógono", "Pentágono", "Hexágono", "Heptágono"], correta: "Octógono" },
-        { pergunta: "Qual polígono tem todos os lados iguais e todos os ângulos iguais?", opcoes: ["Regular", "Irregular", "Concavo", "Convexo"], correta: "Regular" },
-        { pergunta: "Qual polígono tem pelo menos um ângulo maior que 180°?", opcoes: ["Côncavo", "Convexo", "Regular", "Irregular"], correta: "Côncavo" },
-        { pergunta: "Quantas diagonais tem um quadrado?", opcoes: ["2", "4", "6", "0"], correta: "2" }
-      ],
-      2: [
-        { pergunta: "Quantas diagonais tem um pentágono?", opcoes: ["5", "10", "7", "15"], correta: "5" },
-        { pergunta: "A soma dos ângulos internos de um triângulo é?", opcoes: ["180°", "90°", "360°", "270°"], correta: "180°" },
-        { pergunta: "Qual é a soma dos ângulos internos de um quadrado?", opcoes: ["360°", "180°", "540°", "720°"], correta: "360°" },
-        { pergunta: "O que é um polígono convexo?", opcoes: ["Todos os ângulos internos < 180°", "Pelo menos um ângulo > 180°", "Lados desiguais", "Ângulos retos"], correta: "Todos os ângulos internos < 180°" },
-        { pergunta: "Qual o número de diagonais de um hexágono?", opcoes: ["9", "6", "12", "15"], correta: "9" },
-        { pergunta: "Quantos lados tem um heptágono?", opcoes: ["7", "6", "8", "9"], correta: "7" },
-        { pergunta: "Quantos lados tem um eneágono?", opcoes: ["9", "8", "10", "11"], correta: "9" },
-        { pergunta: "Qual é a fórmula para calcular o número de diagonais de um polígono?", opcoes: ["n(n-3)/2", "n(n+3)/2", "n(n-2)/2", "2n"], correta: "n(n-3)/2" }
-      ],
-      // Mais fases podem ser adicionadas
-    };
+const todasPerguntas = {
+  1: [
+    { pergunta: "Quantos lados tem um triângulo?", opcoes: ["2", "3", "4", "5"], correta: "3" },
+    { pergunta: "Qual o nome do polígono de quatro lados?", opcoes: ["Triângulo", "Quadrado", "Pentágono", "Hexágono"], correta: "Quadrado" },
+    { pergunta: "Um pentágono tem quantos lados?", opcoes: ["5", "6", "4", "7"], correta: "5" },
+    { pergunta: "Quantos lados tem um hexágono?", opcoes: ["5", "6", "7", "8"], correta: "6" },
+    { pergunta: "Qual polígono tem 8 lados?", opcoes: ["Heptágono", "Octógono", "Octágono", "Nonágono"], correta: "Octógono" },
+    { pergunta: "Qual o nome do polígono de 5 lados?", opcoes: ["Pentágono", "Hexágono", "Quadrado", "Triângulo"], correta: "Pentágono" },
+    { pergunta: "Qual polígono tem 3 lados?", opcoes: ["Quadrado", "Triângulo", "Pentágono", "Hexágono"], correta: "Triângulo" },
+    { pergunta: "Quantos lados tem um quadrado?", opcoes: ["3", "4", "5", "6"], correta: "4" }
+  ],
+  2: [
+    { pergunta: "O que é um polígono regular?", opcoes: ["Lados e ângulos iguais", "Lados diferentes", "Ângulos retos", "Polígono côncavo"], correta: "Lados e ângulos iguais" },
+    { pergunta: "Qual polígono é convexo?", opcoes: ["Ângulos internos menores que 180°", "Ângulos maiores que 180°", "Lados iguais", "Ângulos retos"], correta: "Ângulos internos menores que 180°" },
+    { pergunta: "Qual polígono é côncavo?", opcoes: ["Possui pelo menos um ângulo interno maior que 180°", "Todos os lados iguais", "Tem ângulos retos", "Polígono regular"], correta: "Possui pelo menos um ângulo interno maior que 180°" },
+    { pergunta: "Qual a soma dos ângulos internos de um triângulo?", opcoes: ["180°", "360°", "90°", "270°"], correta: "180°" },
+    { pergunta: "Qual a soma dos ângulos internos de um quadrado?", opcoes: ["360°", "180°", "270°", "720°"], correta: "360°" },
+    { pergunta: "Quantas diagonais tem um quadrado?", opcoes: ["2", "4", "1", "3"], correta: "2" },
+    { pergunta: "Qual o nome do polígono com todos os lados e ângulos iguais?", opcoes: ["Regular", "Irregular", "Côncavo", "Convexo"], correta: "Regular" },
+    { pergunta: "O que é um polígono irregular?", opcoes: ["Lados ou ângulos diferentes", "Lados iguais", "Ângulos retos", "Sem lados"], correta: "Lados ou ângulos diferentes" }
+  ],
+  3: [
+    { pergunta: "Qual a fórmula para calcular a soma dos ângulos internos de um polígono?", opcoes: ["(n-2)*180°", "n*90°", "n*180°", "(n+2)*90°"], correta: "(n-2)*180°" },
+    { pergunta: "Quantas diagonais tem um pentágono?", opcoes: ["5", "7", "10", "15"], correta: "5" },
+    { pergunta: "O que é um polígono convexo?", opcoes: ["Todos os ângulos internos menores que 180°", "Possui ângulo maior que 180°", "Lados iguais", "Tem ângulos retos"], correta: "Todos os ângulos internos menores que 180°" },
+    { pergunta: "Qual a soma dos ângulos internos de um hexágono?", opcoes: ["720°", "360°", "540°", "900°"], correta: "720°" },
+    { pergunta: "Quantas diagonais tem um hexágono?", opcoes: ["9", "12", "15", "18"], correta: "9" },
+    { pergunta: "Qual é a soma dos ângulos externos de qualquer polígono?", opcoes: ["360°", "180°", "720°", "0°"], correta: "360°" },
+    { pergunta: "Qual polígono possui 10 lados?", opcoes: ["Decágono", "Nonágono", "Dodecágono", "Hendecágono"], correta: "Decágono" },
+    { pergunta: "Um polígono com 12 lados é chamado de?", opcoes: ["Dodecágono", "Decágono", "Hendecágono", "Octógono"], correta: "Dodecágono" }
+  ],
+  4: [
+    { pergunta: "Como calcular o número de diagonais de um polígono?", opcoes: ["n(n-3)/2", "n*2", "n+3", "n-3"], correta: "n(n-3)/2" },
+    { pergunta: "Quantas diagonais tem um octógono?", opcoes: ["20", "25", "28", "30"], correta: "20" },
+    { pergunta: "Qual é a medida de cada ângulo interno em um hexágono regular?", opcoes: ["120°", "90°", "100°", "110°"], correta: "120°" },
+    { pergunta: "Quantos lados tem um hendecágono?", opcoes: ["11", "10", "12", "9"], correta: "11" },
+    { pergunta: "Qual é a soma dos ângulos internos de um decágono?", opcoes: ["1440°", "1260°", "1080°", "900°"], correta: "1440°" },
+    { pergunta: "Qual é a soma dos ângulos externos de um polígono convexo?", opcoes: ["360°", "180°", "720°", "540°"], correta: "360°" },
+    { pergunta: "Qual o nome do polígono com 7 lados?", opcoes: ["Heptágono", "Hexágono", "Octógono", "Pentágono"], correta: "Heptágono" },
+    { pergunta: "Qual é o valor do ângulo externo em um pentágono regular?", opcoes: ["72°", "60°", "90°", "120°"], correta: "72°" }
+  ],
+  5: [
+    { pergunta: "Qual a fórmula para calcular a área de um triângulo?", opcoes: ["(base x altura) / 2", "base x altura", "base + altura", "2 x base x altura"], correta: "(base x altura) / 2" },
+    { pergunta: "Qual a fórmula para calcular a área de um quadrado?", opcoes: ["lado²", "2 x lado", "lado x 2", "lado³"], correta: "lado²" },
+    { pergunta: "Qual a fórmula para calcular a área de um retângulo?", opcoes: ["base x altura", "lado x 2", "2 x base x altura", "base + altura"], correta: "base x altura" },
+    { pergunta: "O que significa que um polígono é equilátero?", opcoes: ["Todos os lados iguais", "Todos os ângulos iguais", "Lados diferentes", "Sem lados"], correta: "Todos os lados iguais" },
+    { pergunta: "O que significa que um polígono é equiângulo?", opcoes: ["Todos os ângulos iguais", "Todos os lados iguais", "Lados diferentes", "Ângulos diferentes"], correta: "Todos os ângulos iguais" },
+    { pergunta: "Qual polígono tem todos os lados e ângulos iguais?", opcoes: ["Polígono regular", "Polígono irregular", "Polígono convexo", "Polígono côncavo"], correta: "Polígono regular" },
+    { pergunta: "Qual é o valor de cada ângulo interno em um quadrado?", opcoes: ["90°", "60°", "120°", "180°"], correta: "90°" },
+    { pergunta: "Qual a soma dos ângulos externos de qualquer polígono?", opcoes: ["360°", "180°", "720°", "540°"], correta: "360°" }
+  ],
+  6: [
+    { pergunta: "Quantos lados tem um polígono chamado eneágono?", opcoes: ["7", "8", "9", "10"], correta: "9" },
+    { pergunta: "Quantos lados tem um polígono chamado dodecágono?", opcoes: ["10", "11", "12", "13"], correta: "12" },
+    { pergunta: "Qual polígono tem 15 lados?", opcoes: ["Pentadecágono", "Hexadecágono", "Heptadecágono", "Octadecágono"], correta: "Pentadecágono" },
+    { pergunta: "Qual polígono tem 20 lados?", opcoes: ["Icoságono", "Dodecágono", "Hexágono", "Pentágono"], correta: "Icoságono" },
+    { pergunta: "Qual é a fórmula para calcular o perímetro de um polígono regular?", opcoes: ["lado x número de lados", "lado + número de lados", "lado / número de lados", "lado - número de lados"], correta: "lado x número de lados" },
+    { pergunta: "Qual a fórmula para calcular o ângulo interno de um polígono regular?", opcoes: ["((n-2)*180)/n", "(n*180)/2", "180/n", "(n-2)*180"], correta: "((n-2)*180)/n" },
+    { pergunta: "Qual é o valor de cada ângulo externo em um hexágono regular?", opcoes: ["60°", "90°", "120°", "30°"], correta: "60°" },
+    { pergunta: "Qual é o número de diagonais de um decágono?", opcoes: ["35", "40", "45", "50"], correta: "35" }
+  ],
+  7: [
+    { pergunta: "Quantos vértices tem um dodecágono?", opcoes: ["10", "11", "12", "13"], correta: "12" },
+    { pergunta: "Qual o valor da soma dos ângulos internos de um hendecágono?", opcoes: ["1620°", "1440°", "1260°", "1800°"], correta: "1620°" },
+    { pergunta: "Qual é o número de diagonais de um hexágono?", opcoes: ["9", "12", "15", "18"], correta: "9" },
+    { pergunta: "Qual a área de um triângulo com base 10 e altura 5?", opcoes: ["25", "50", "30", "15"], correta: "25" },
+    { pergunta: "Qual é a soma dos ângulos externos de qualquer polígono?", opcoes: ["360°", "180°", "540°", "720°"], correta: "360°" },
+    { pergunta: "O que é um polígono concêntrico?", opcoes: ["Polígonos com o mesmo centro", "Polígonos com lados iguais", "Polígonos regulares", "Polígonos com ângulos retos"], correta: "Polígonos com o mesmo centro" },
+    { pergunta: "Qual o nome do polígono com 14 lados?", opcoes: ["Tetradecágono", "Dodecágono", "Pentadecágono", "Hexadecágono"], correta: "Tetradecágono" },
+    { pergunta: "Qual é a soma dos ângulos internos de um octógono?", opcoes: ["1080°", "900°", "1260°", "1440°"], correta: "1080°" }
+  ],
+  8: [
+    { pergunta: "O que é um polígono estrelado?", opcoes: ["Polígono auto-intersectante", "Polígono regular", "Polígono convexo", "Polígono côncavo"], correta: "Polígono auto-intersectante" },
+    { pergunta: "Qual a soma dos ângulos internos de um polígono estrelado?", opcoes: ["Difere do polígono convexo", "360°", "180°", "720°"], correta: "Difere do polígono convexo" },
+    { pergunta: "Quantos lados tem um pentadecágono?", opcoes: ["15", "16", "14", "13"], correta: "15" },
+    { pergunta: "Qual é a fórmula do perímetro de um polígono irregular?", opcoes: ["Soma dos lados", "Número de lados x lado", "Lado x 2", "Lado + altura"], correta: "Soma dos lados" },
+    { pergunta: "O que significa polígono côncavo?", opcoes: ["Tem pelo menos um ângulo interno maior que 180°", "Todos os lados iguais", "Todos os ângulos iguais", "Não possui diagonais"], correta: "Tem pelo menos um ângulo interno maior que 180°" },
+    { pergunta: "Quantas diagonais tem um dodecágono?", opcoes: ["54", "42", "45", "50"], correta: "54" },
+    { pergunta: "Qual é a soma dos ângulos externos de um polígono estrelado?", opcoes: ["Pode variar", "360°", "180°", "720°"], correta: "Pode variar" },
+    { pergunta: "Qual é a medida do ângulo externo de um pentágono regular?", opcoes: ["72°", "90°", "60°", "80°"], correta: "72°" }
+  ],
+  9: [
+    { pergunta: "Qual a relação entre o número de lados e o número de diagonais em um polígono?", opcoes: ["n(n-3)/2", "n(n-2)", "2n", "n-3"], correta: "n(n-3)/2" },
+    { pergunta: "Um polígono regular possui ângulo interno de 135°. Quantos lados ele tem?", opcoes: ["8", "6", "10", "12"], correta: "8" },
+    { pergunta: "Qual é o perímetro de um hexágono regular com lado 5 cm?", opcoes: ["30 cm", "25 cm", "20 cm", "15 cm"], correta: "30 cm" },
+    { pergunta: "Qual é o valor da soma dos ângulos internos de um polígono com 20 lados?", opcoes: ["3240°", "3600°", "3000°", "2880°"], correta: "3240°" },
+    { pergunta: "O que é um polígono inscrito?", opcoes: ["Polígono dentro de uma circunferência", "Polígono fora da circunferência", "Polígono regular", "Polígono côncavo"], correta: "Polígono dentro de uma circunferência" },
+    { pergunta: "O que é um polígono circunscrito?", opcoes: ["Circunferência dentro do polígono", "Polígono dentro da circunferência", "Polígono irregular", "Polígono regular"], correta: "Circunferência dentro do polígono" },
+    { pergunta: "Qual é a soma dos ângulos externos de qualquer polígono?", opcoes: ["360°", "180°", "720°", "540°"], correta: "360°" },
+    { pergunta: "Qual polígono tem um número igual de lados e vértices?", opcoes: ["Todo polígono", "Só os regulares", "Só os irregulares", "Nenhum"], correta: "Todo polígono" }
+  ],
+  10: [
+    { pergunta: "Qual é a fórmula para calcular o número de diagonais em um polígono?", opcoes: ["n(n-3)/2", "n*3", "n-2", "n²"], correta: "n(n-3)/2" },
+    { pergunta: "Quantos lados tem um eneágono?", opcoes: ["9", "8", "10", "7"], correta: "9" },
+    { pergunta: "Qual a medida de cada ângulo interno em um decágono regular?", opcoes: ["144°", "120°", "135°", "150°"], correta: "144°" },
+    { pergunta: "Qual o perímetro de um polígono regular de lado 7 cm com 12 lados?", opcoes: ["84 cm", "72 cm", "79 cm", "90 cm"], correta: "84 cm" },
+    { pergunta: "Qual a soma dos ângulos internos de um polígono de 15 lados?", opcoes: ["2340°", "2160°", "1800°", "1980°"], correta: "2340°" },
+    { pergunta: "Qual o valor de cada ângulo externo de um polígono regular de 12 lados?", opcoes: ["30°", "60°", "45°", "15°"], correta: "30°" },
+    { pergunta: "O que é um polígono equilátero?", opcoes: ["Todos os lados iguais", "Todos os ângulos iguais", "Ângulos retos", "Lados diferentes"], correta: "Todos os lados iguais" },
+    { pergunta: "Qual a fórmula da área de um polígono regular?", opcoes: ["(Perímetro x apótema) / 2", "Lado x altura", "Base x altura", "Lado x apótema"], correta: "(Perímetro x apótema) / 2" }
+  ]
+};
 
     // Atualiza o avatar da tela inicial
     function atualizarAvatar() {
@@ -458,42 +537,45 @@
     }
 
     // Mostra a pergunta atual
-    function mostrarPergunta() {
-      const perguntaObj = perguntas[perguntaAtual];
+function mostrarPergunta() {
+  const perguntaObj = perguntas[perguntaAtual];
 
-      document.getElementById("fase").innerText = `Fase ${faseAtual}`;
-      document.getElementById("pergunta").innerText = perguntaObj.pergunta;
+  document.getElementById("fase").innerText = `Fase ${faseAtual}`;
+  document.getElementById("pergunta").innerText = perguntaObj.pergunta;
 
-      const respostasDiv = document.getElementById("respostas");
-      respostasDiv.innerHTML = "";
+  const respostasDiv = document.getElementById("respostas");
+  respostasDiv.innerHTML = "";
 
-      perguntaObj.opcoes.forEach((resposta, i) => {
-        const btn = document.createElement("button");
-        btn.innerText = resposta;
-        btn.onclick = () => responder(i);
-        respostasDiv.appendChild(btn);
-      });
+  // Criar cópia das opções e embaralhar
+  const opcoesEmbaralhadas = [...perguntaObj.opcoes].sort(() => Math.random() - 0.5);
 
-      document.getElementById("proxima").style.display = "none";
-      document.getElementById("resultado-final").style.display = "none";
-      document.getElementById("pergunta").style.display = "block";
-      document.getElementById("respostas").style.display = "block";
-    }
+  opcoesEmbaralhadas.forEach((resposta) => {
+    const btn = document.createElement("button");
+    btn.innerText = resposta;
+    btn.onclick = () => responder(resposta);
+    respostasDiv.appendChild(btn);
+  });
+
+  document.getElementById("proxima").style.display = "none";
+  document.getElementById("resultado-final").style.display = "none";
+  document.getElementById("pergunta").style.display = "block";
+  document.getElementById("respostas").style.display = "block";
+}
+
 
     // Sons de acerto e erro (coloque os arquivos na mesma pasta ou ajuste o caminho)
     const somAcerto = new Audio('sucessound.mp3');
     const somErro = new Audio('errorsound.mp3');
 
     // Função para responder uma pergunta
-    function responder(indiceEscolhido) {
-      const perguntaObj = perguntas[perguntaAtual];
-      const respostaEscolhida = perguntaObj.opcoes[indiceEscolhido];
+function responder(respostaEscolhida) {
+  const perguntaObj = perguntas[perguntaAtual];
 
-      if (respostaEscolhida === perguntaObj.correta) {
-        pontuacao++;
-        somAcerto.play();
-      } else {
-        somErro.play();
+  if (respostaEscolhida === perguntaObj.correta) {
+    pontuacao++;
+    somAcerto.play();
+  } else {
+    somErro.play();
       }
 
       // Desabilitar botões após resposta
